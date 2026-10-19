@@ -1,0 +1,24 @@
+function s = pm_trajectory(p,initial,stop,points)
+% Integrate the original ODE, stopping if a checked validity boundary is crossed.
+% MATLAB ode15s replaces Python LSODA; small integration differences are expected.
+if nargin<4, points=3001; end
+initial=initial(:);
+assert(all(initial>=0) && 1-p.A(3,:)*initial/p.K>=0,...
+    'Initial populations are outside the checked region.');
+options=odeset('RelTol',1e-9,'AbsTol',1e-8,'MaxStep',10,...
+    'Events',@(t,x) boundary(t,x,p));
+[time,populations,te]=ode15s(@(t,x) pm_model(x,p),...
+    linspace(0,stop,points),initial,options);
+birth=1-populations*p.A(3,:)'/p.K;
+assert(isempty(te) && time(end)>=stop && all(isfinite(populations(:)))...
+    && min(populations(:))>=-1e-7 && min(birth)>=-1e-10,...
+    'Trajectory left the checked region; no clipping has been applied.');
+s=struct('time',time,'populations',populations,'mu',p.mu,'m',p.m,...
+    'K',p.K,'initial',initial','min_population',min(populations(:)),...
+    'min_birth_factor',min(birth));
+end
+
+function [value,isterminal,direction]=boundary(~,x,p)
+value=[1-p.A(3,:)*x/p.K;min(x)+1e-7];
+isterminal=[1;1]; direction=[-1;-1];
+end
