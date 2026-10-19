@@ -1,8 +1,6 @@
 function fig = make_figure(number,d,outdir)
 % MAKE_FIGURE(1), ..., MAKE_FIGURE(7): final-manuscript figure numbers.
-% Optional d supplies newly calculated data; outdir selects the export folder.
-% Parameter values and quantities follow the manuscript; styling may differ.
-% Maps classify strictly stable equilibrium sets on the archived interior grid.
+% Parameter values and quantities follow the manuscript;
 root=fileparts(mfilename('fullpath'));
 if nargin<2 || isempty(d)
     loaded=load(fullfile(root,'data','paper_data.mat'),'d'); d=loaded.d;
