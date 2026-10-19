@@ -1,6 +1,5 @@
 function fig = make_figure(number,d,outdir)
 % MAKE_FIGURE(1), ..., MAKE_FIGURE(7): final-manuscript figure numbers.
-% Figure 8 is supplied separately by the author.
 % Optional d supplies newly calculated data; outdir selects the export folder.
 % Parameter values and quantities follow the manuscript; styling may differ.
 % Maps classify strictly stable equilibrium sets on the archived interior grid.
