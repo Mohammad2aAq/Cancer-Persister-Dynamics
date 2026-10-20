@@ -1,6 +1,5 @@
 function d = recompute_manuscript_data()
-% Recompute Figures 1--7 of Satouri_Persister_Final.pdf in MATLAB.
-% Figure 8 uses the author's separate code.
+% Recompute Figures 1--7 of our manuscript.
 d.equilibrium_names={'TE','FSE','FRE','CSR','CRP1','CRP2','CAT1','CAT2'};
 raw=cell(1,2); horizontal={linspace(.005,.995,121),linspace(0,10,121)};
 mvals=linspace(.005,.995,121);
