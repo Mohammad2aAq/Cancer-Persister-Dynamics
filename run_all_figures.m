@@ -1,7 +1,6 @@
 function run_all_figures(mode)
-% RUN_ALL_FIGURES Draw Figures 1--7 of Satouri_Persister_Final.pdf.
+% RUN_ALL_FIGURES Draw Figures 1--7 of our manuscript.
 % RUN_ALL_FIGURES('recompute') Recalculate the included numerical results.
-% Figure 8 uses the author's separate code and is not included here.
 if nargin<1, mode='paper'; end
 root=fileparts(mfilename('fullpath'));
 switch lower(mode)
