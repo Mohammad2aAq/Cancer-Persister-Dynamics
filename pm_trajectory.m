@@ -1,6 +1,5 @@
 function s = pm_trajectory(p,initial,stop,points)
-% Integrate the original ODE, stopping if a checked validity boundary is crossed.
-% MATLAB ode15s replaces Python LSODA; small integration differences are expected.
+
 if nargin<4, points=3001; end
 initial=initial(:);
 assert(all(initial>=0) && 1-p.A(3,:)*initial/p.K>=0,...
